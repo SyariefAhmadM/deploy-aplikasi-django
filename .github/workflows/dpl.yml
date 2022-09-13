@@ -12,7 +12,7 @@ jobs:
   Deployment:
     runs-on: ubuntu-latest
     env:
-      HEROKU_API_KEY: ${{ secrets.7b6ce9e18bae4c09b00fa73aa2387647 }}
+      HEROKU_API_KEY: ${{ secrets.c254b019-2c67-472f-8b30-86760e3f3c8f }}
       HEROKU_APP_NAME: ${{ secrets.PBP_Syarief }}
     steps:
     - uses: actions/checkout@v2
@@ -25,7 +25,7 @@ jobs:
     - name: Install Heroku CLI
       run: wget -qO- https://cli-assets.heroku.com/install-ubuntu.sh | sh
     - name: Deploy to Heroku
-      run: dpl --provider=heroku --app=$PBP_Syarief --api-key=$7b6ce9e18bae4c09b00fa73aa2387647
+      run: dpl --provider=heroku --app=$PBP_Syarief --api-key=$c254b019-2c67-472f-8b30-86760e3f3c8f
     - name: Run migrations on Heroku
       run: heroku run --app $PBP_Syarief migrate
     - uses: chrnorm/deployment-action@releases/v1
