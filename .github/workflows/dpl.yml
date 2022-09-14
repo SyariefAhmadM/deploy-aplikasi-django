@@ -12,8 +12,8 @@ jobs:
   Deployment:
     runs-on: ubuntu-latest
     env:
-      HEROKU_API_KEY: ${{ secrets.c254b019-2c67-472f-8b30-86760e3f3c8f }}
-      HEROKU_APP_NAME: ${{ secrets.PBP_Syarief }}
+      HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
+      HEROKU_APP_NAME: ${{ secrets.HEROKU_APP_NAME }}
     steps:
     - uses: actions/checkout@v2
     - name: Set up Ruby 2.7
@@ -25,13 +25,13 @@ jobs:
     - name: Install Heroku CLI
       run: wget -qO- https://cli-assets.heroku.com/install-ubuntu.sh | sh
     - name: Deploy to Heroku
-      run: dpl --provider=heroku --app=$PBP_Syarief --api-key=$c254b019-2c67-472f-8b30-86760e3f3c8f
+      run: dpl --provider=heroku --app=$HEROKU_APP_NAME --api-key=$HEROKU_API_KEY
     - name: Run migrations on Heroku
-      run: heroku run --app $PBP_Syarief migrate
+      run: heroku run --app $HEROKU_APP_NAME migrate
     - uses: chrnorm/deployment-action@releases/v1
       name: Create GitHub deployment
       with:
         initial_status: success
         token: ${{ github.token }}
-        target_url: https://${{ secrets.PBP_Syarief }}.herokuapp.com
+        target_url: https://${{ secrets.HEROKU_APP_NAME }}.herokuapp.com
         environment: production
